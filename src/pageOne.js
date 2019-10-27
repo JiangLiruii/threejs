@@ -1,1 +1,3 @@
-console.log("Hello World from pageOne main file!");
+import {init} from './pageOne/index'
+
+init()
