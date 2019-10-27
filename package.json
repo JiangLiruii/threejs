@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
+    "build": "rimraf dist && webpack",
     "start": "webpack-dev-server"
   },
   "keywords": [],
@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "dat.gui": "^0.7.6",
+    "rimraf": "^3.0.0",
     "three": "^0.109.0"
   },
   "devDependencies": {

@@ -38,9 +38,18 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
 
-  plugins: [new webpack.ProgressPlugin(), new HtmlWebpackPlugin({
-    template: './public/index.html',
-  })],
+  plugins: [new webpack.ProgressPlugin(),
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+      chunks: ['pageOne'],
+      filename: 'pageOne.html',
+    }),
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+      chunks: ['pageTwo'],
+      filename: 'pageTwo.html',
+    }),
+  ],
 
   module: {
     rules: [
