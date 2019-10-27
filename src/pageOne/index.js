@@ -1,15 +1,16 @@
 import * as THREE from 'three'
-
+import {controller} from './control'
+let scene; let camera; let renderer; let cube
 /**
  * 初始化函数
  */
 export function init() {
   // 实例化一个场景
-  const scene = new THREE.Scene()
+  scene = new THREE.Scene()
   // 实例化一个透视摄像机(物体会近大远小), 参数分别为视场fov, 比例aspect, 近场 near, 远场far
-  const camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000)
+  camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000)
   // 实例化一个渲染器, 基于WebGL
-  const renderer = new THREE.WebGLRenderer()
+  renderer = new THREE.WebGLRenderer()
   // 设置清除颜色
   renderer.setClearColor(new THREE.Color(0x000000))
   // 设置渲染器大小
@@ -38,7 +39,7 @@ export function init() {
     color: 'red',
   })
   // 实例化一个cube的网格实例
-  const cube = new THREE.Mesh(cubeGeometry, cubeMaterial)
+  cube = new THREE.Mesh(cubeGeometry, cubeMaterial)
   // 设置cube的位置为x,y,z
   cube.position.set(-4, 4, 4)
   // 添加cube到scene
@@ -49,6 +50,12 @@ export function init() {
   camera.lookAt(scene.position)
   // 将render的dom对象放到DOM中进行渲染
   document.getElementById('webgl-output').appendChild(renderer.domElement)
+}
+export const render = function() {
+  cube.position.x += 0.1
+  cube.position.y = controller.y
+  cube.position.z = controller.z
   // 进行渲染
   renderer.render(scene, camera)
+  requestAnimationFrame(render)
 }

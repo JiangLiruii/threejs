@@ -38,5 +38,6 @@ module.exports = {
         "max-params": [0, 3],
         //函数名首行大写必须使用new方式调用，首行小写必须用不带new方式调用
         "new-cap": 2,
+        "no-invalid-this": 0
     }
 };
