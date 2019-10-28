@@ -40,14 +40,6 @@ export const init = function() {
   spotLight.castShadow = true
   scene.add(spotLight)
 
-  const cubeGeometry = new THREE.BoxGeometry(10, 10, 10)
-  const cubeMaterial = new THREE.MeshLambertMaterial({
-    color: 'blue',
-  })
-  const cube = new THREE.Mesh(cubeGeometry, cubeMaterial)
-  cube.castShadow = true
-  scene.add(cube)
-
   document.getElementById('webgl-output').appendChild(renderer.domElement)
   renderer.render(scene, camera)
 }
