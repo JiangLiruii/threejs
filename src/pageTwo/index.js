@@ -41,5 +41,5 @@ export const init = function() {
   scene.add(spotLight)
 
   document.getElementById('webgl-output').appendChild(renderer.domElement)
-  renderer.render(scene, camera)
 }
+

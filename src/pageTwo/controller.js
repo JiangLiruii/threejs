@@ -16,6 +16,8 @@ const addBlock = function() {
   cube.position.z = -20 + Math.round(Math.random() * planeGeometry.parameters.height)
   cube.name='cube-'+this.numberOfCubes
   scene.add(cube)
+  this.numberOfObjects = scene.children.length,
+
   renderer.render(scene, camera)
 }
 const removeBlock = function() {
@@ -24,15 +26,20 @@ const removeBlock = function() {
     scene.remove(lastOne)
     this.numberOfCubes -= 1
     renderer.render(scene, camera)
+    this.numberOfObjects = scene.children.length
   }
 }
 export const controller = {
   addBlock: () => addBlock.call(controller),
-  numberOfCubes: scene.children.length,
+  numberOfCubes: 0,
+  numberOfObjects: scene.children.length,
   removeBlock: () => removeBlock.call(controller),
+  rotationSpeed: 0,
 }
 // 选择哪些参数需要添加到控制GUI中
 gui.add(controller, 'addBlock')
 gui.add(controller, 'numberOfCubes').listen()
+gui.add(controller, 'numberOfObjects').listen()
 gui.add(controller, 'removeBlock')
+gui.add(controller, 'rotationSpeed', 0, 0.5)
 
