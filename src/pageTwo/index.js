@@ -1,4 +1,5 @@
 import * as THREE from 'three'
+import cube from './customeCube'
 export const scene = new THREE.Scene()
 export const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100)
 export const renderer = new THREE.WebGLRenderer()
@@ -8,7 +9,7 @@ window.scene = scene
 export const init = function() {
   const axes = new THREE.AxesHelper(20)
   scene.fog = new THREE.FogExp2(0xfffffff, 0.01)
-  scene.overrideMaterial = new THREE.MeshLambertMaterial({color: 0xffffff})
+  // scene.overrideMaterial = new THREE.MeshLambertMaterial({color: 0xffffff})
   // scene.fog = new THREE.Fog(0xffffff, 0.01, 100)
   scene.add(axes)
   scene.add(camera)
@@ -29,6 +30,10 @@ export const init = function() {
   plane.position.z = 0
   plane.name = 'plane'
   scene.add(plane)
+
+  scene.add(cube)
+
+
   camera.position.x = -30
   camera.position.y = 40
   camera.position.z = 30
