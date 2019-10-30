@@ -7,6 +7,9 @@ export const planeGeometry = new THREE.PlaneGeometry(60, 40, 1, 1)
 window.scene = scene
 export const init = function() {
   const axes = new THREE.AxesHelper(20)
+  scene.fog = new THREE.FogExp2(0xfffffff, 0.01)
+  scene.overrideMaterial = new THREE.MeshLambertMaterial({color: 0xffffff})
+  // scene.fog = new THREE.Fog(0xffffff, 0.01, 100)
   scene.add(axes)
   scene.add(camera)
 
