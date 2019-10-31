@@ -28,5 +28,17 @@ const gem = new THREE.Geometry()
 gem.vertices = vertices
 gem.faces = faces
 gem.computeFaceNormals()
-const mat = new THREE.MeshLambertMaterial({color: 'green'})
-export default new THREE.Mesh(gem, mat)
+const mat = [
+  new THREE.MeshBasicMaterial({color: 0x000000, wireframe: true}),
+  new THREE.MeshLambertMaterial({opacity: 0.6, color: 0x44ff44, transparent: true}),
+]
+const group = new THREE.Group()
+
+for ( let i = 0, l = mat.length; i < l; i ++ ) {
+  group.add( new THREE.Mesh( gem, mat[i] ) )
+}
+// 遍历所有mesh
+group.children.forEach((mesh) => mesh.castShadow = true)
+
+
+export default group
