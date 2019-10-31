@@ -1,6 +1,7 @@
 import * as dat from 'dat.gui'
 import * as THREE from 'three'
 import {scene, camera, planeGeometry, renderer} from './index'
+import {groupBy} from 'C:/Users/pc/AppData/Local/Microsoft/TypeScript/3.6/node_modules/rxjs/internal/operators/groupBy'
 const gui = new dat.GUI()
 const addBlock = function() {
   this.numberOfCubes += 1
@@ -29,12 +30,29 @@ const removeBlock = function() {
     this.numberOfObjects = scene.children.length
   }
 }
+const clone = function() {
+  const geo = scene.getObjectByName('customCube').children[0].geometry
+  const mats = [
+    new THREE.MeshLambertMaterial({opacity: 0.6, color: 0xff44ff, transparent: true}),
+    new THREE.MeshBasicMaterial({color: 0x000000, wireframe: true}),
+  ]
+  const group = new THREE.Group()
+  for (let i = 0, l=mats.length; i < l; i ++) {
+    group.add(new THREE.Mesh(geo, mats[i]))
+  }
+  group.translateX(10 * (Math.random() + 1))
+  group.translateY(3)
+  group.name = 'clone'
+  scene.remove(scene.getObjectByName('clone'))
+  scene.add(group)
+}
 export const controller = {
   addBlock: () => addBlock.call(controller),
   numberOfCubes: 0,
   numberOfObjects: scene.children.length,
   removeBlock: () => removeBlock.call(controller),
   rotationSpeed: 0,
+  clone,
 }
 // 选择哪些参数需要添加到控制GUI中
 gui.add(controller, 'addBlock')
@@ -42,4 +60,5 @@ gui.add(controller, 'numberOfCubes').listen()
 gui.add(controller, 'numberOfObjects').listen()
 gui.add(controller, 'removeBlock')
 gui.add(controller, 'rotationSpeed', 0, 0.5)
+gui.add(controller, 'clone')
 

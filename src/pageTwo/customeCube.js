@@ -39,6 +39,6 @@ for ( let i = 0, l = mat.length; i < l; i ++ ) {
 }
 // 遍历所有mesh
 group.children.forEach((mesh) => mesh.castShadow = true)
-
+group.name = 'customCube'
 
 export default group
