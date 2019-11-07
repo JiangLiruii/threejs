@@ -1,7 +1,6 @@
 import * as dat from 'dat.gui'
 import * as THREE from 'three'
 import {scene, camera, planeGeometry, renderer} from './index'
-import {groupBy} from 'C:/Users/pc/AppData/Local/Microsoft/TypeScript/3.6/node_modules/rxjs/internal/operators/groupBy'
 const gui = new dat.GUI()
 const addBlock = function() {
   this.numberOfCubes += 1

@@ -31,6 +31,7 @@ module.exports = {
   entry: {
     pageOne: './src/pageOne.js',
     pageTwo: './src/pageTwo.js',
+    pageThree: './src/pageThree.js',
   },
 
   output: {
@@ -48,6 +49,11 @@ module.exports = {
       template: './public/index.html',
       chunks: ['pageTwo'],
       filename: 'pageTwo.html',
+    }),
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+      chunks: ['pageThree'],
+      filename: 'pageThree.html',
     }),
   ],
 
