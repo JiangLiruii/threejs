@@ -15,7 +15,7 @@ const axes = new THREE.AxesHelper(20)
 scene.add(axes)
 scene.add(plane)
 // 创建ambient光源
-const ambientLight = new THREE.AmbientLight(new THREE.Color('yellow'), 1)
+const ambientLight = new THREE.AmbientLight('#606008', 1)
 scene.add(ambientLight)
 // 创建点光源增强效果
 const spotLight = new THREE.SpotLight(new THREE.Color(0xcfcfcf), 1, 180, Math.PI / 4)

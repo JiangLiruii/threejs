@@ -10,7 +10,8 @@ export const setupControl = (ambientLight, spotLight) => {
   gui.add(controller, 'intensity', 0, 3, 0.1).onChange(() => {
     ambientLight.intensity = controller.intensity
   })
-  gui.add(controller, 'ambientColor').onChange(() => {
+  // 注意这里是addColor来显示颜色选择框
+  gui.addColor(controller, 'ambientColor').onChange((e) => {
     ambientLight.color = new THREE.Color(controller.ambientColor)
   })
   gui.add(controller, 'disableSpotLight').onChange((e) => {
