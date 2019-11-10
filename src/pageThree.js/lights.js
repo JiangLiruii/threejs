@@ -5,5 +5,5 @@ spotLight.castShadow = true
 spotLight.position.set(-30, 10, -10)
 spotLight.shadow.mapSize.set(2048, 2048)
 
-export const pointLight = new THREE.PointLight('#000000', 1, 180)
-pointLight.position.set(0, 0, 0)
+export const pointLight = new THREE.PointLight('#ffffff', 1, 180)
+pointLight.position.set(0, 1, 0)

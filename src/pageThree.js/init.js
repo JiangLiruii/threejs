@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import {setupControl} from './control'
-import {ambientLight, spotLight} from './lights'
+import {ambientLight, spotLight, pointLight} from './lights'
 const scene = new THREE.Scene()
 const camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000)
 camera.position.set(30, 30, 50)
@@ -20,6 +20,8 @@ scene.add(ambientLight)
 // 创建点光源增强效果
 
 scene.add(spotLight)
+
+scene.add(pointLight)
 // 添加一个立方体观察效果
 const cube = new THREE.Mesh(new THREE.BoxGeometry(5, 5, 5), new THREE.MeshPhongMaterial({color: 'blue'}))
 cube.position.set(5, 0, 5)
@@ -33,7 +35,7 @@ const renderer = new THREE.WebGLRenderer()
 renderer.setClearColor(new THREE.Color('grey'))
 renderer.setSize(window.innerWidth, window.innerHeight)
 document.getElementById('webgl-output').appendChild(renderer.domElement)
-renderer.shadowMapEnabled = true
+renderer.shadowMap.enabled = true
 
 const render = function() {
   renderer.render(scene, camera)
@@ -42,5 +44,5 @@ const render = function() {
 render()
 
 // 设置dat.gui
-setupControl(ambientLight, spotLight, cube)
+setupControl(ambientLight, spotLight, pointLight, cube)
 

@@ -1,28 +1,34 @@
 import dat from 'dat.gui'
 import * as THREE from 'three'
-export const setupControl = (ambientLight, spotLight, cube) => {
+export const setupControl = (ambientLight, spotLight, pointLight, cube) => {
   const gui = new dat.GUI()
   const controller = new function() {
     this.intensity = ambientLight.intensity,
     this.ambientColor = ambientLight.color.getStyle(),
     this.disableSpotLight = false
     this.disableAmbientLight = false
+    this.disablePointLight = false
     this.x = cube.position.x
     this.y = cube.position.y
     this.z = cube.position.z
   }
-  gui.add(controller, 'intensity', 0, 3, 0.1).onChange(() => {
+  const guiAmbientSettings = gui.addFolder('ambientSettings')
+  guiAmbientSettings.add(controller, 'intensity', 0, 3, 0.1).onChange(() => {
     ambientLight.intensity = controller.intensity
   })
   // 注意这里是addColor来显示颜色选择框
-  gui.addColor(controller, 'ambientColor').onChange((e) => {
+  guiAmbientSettings.addColor(controller, 'ambientColor').onChange((e) => {
     ambientLight.color = new THREE.Color(controller.ambientColor)
   })
-  gui.add(controller, 'disableSpotLight').onChange((e) => {
+  const chooseOneLight = gui.addFolder('chooseLight')
+  chooseOneLight.add(controller, 'disableSpotLight').onChange((e) => {
     spotLight.visible = !e
   })
-  gui.add(controller, 'disableAmbientLight').onChange((e) => {
+  chooseOneLight.add(controller, 'disableAmbientLight').onChange((e) => {
     ambientLight.visible = !e
+  })
+  chooseOneLight.add(controller, 'disablePointLight').onChange((e) => {
+    pointLight.visible = !e
   })
   const guiCube = gui.addFolder('Cube Position')
   guiCube.add(controller, 'x', -10, 10, 1).onChange((e) => {
