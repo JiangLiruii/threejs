@@ -4,6 +4,7 @@ export const setupControl = (ambientLight, spotLight, pointLight, cube) => {
   const gui = new dat.GUI()
   const controller = new function() {
     this.intensity = ambientLight.intensity,
+    this.distance = spotLight.distance
     this.ambientColor = ambientLight.color.getStyle(),
     this.disableSpotLight = false
     this.disableAmbientLight = false
@@ -15,6 +16,13 @@ export const setupControl = (ambientLight, spotLight, pointLight, cube) => {
   const guiAmbientSettings = gui.addFolder('ambientSettings')
   guiAmbientSettings.add(controller, 'intensity', 0, 3, 0.1).onChange(() => {
     ambientLight.intensity = controller.intensity
+    spotLight.intensity = controller.intensity
+    pointLight.intensity = controller.intensity
+  })
+  guiAmbientSettings.add(controller, 'distance', 0, 300, 1).onChange(() => {
+    ambientLight.distance = controller.distance
+    spotLight.distance = controller.distance
+    pointLight.distance = controller.distance
   })
   // 注意这里是addColor来显示颜色选择框
   guiAmbientSettings.addColor(controller, 'ambientColor').onChange((e) => {
