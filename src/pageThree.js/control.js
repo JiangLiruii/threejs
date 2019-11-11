@@ -13,7 +13,7 @@ export const setupControl = (ambientLight, spotLight, pointLight, cube) => {
     this.y = cube.position.y
     this.z = cube.position.z
   }
-  const guiAmbientSettings = gui.addFolder('ambientSettings')
+  const guiAmbientSettings = gui.addFolder('settings')
   guiAmbientSettings.add(controller, 'intensity', 0, 3, 0.1).onChange(() => {
     ambientLight.intensity = controller.intensity
     spotLight.intensity = controller.intensity

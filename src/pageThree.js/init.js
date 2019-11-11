@@ -17,9 +17,7 @@ scene.add(axes)
 scene.add(plane)
 // 创建ambient光源
 scene.add(ambientLight)
-// 创建点光源增强效果
 
-scene.add(spotLight)
 
 scene.add(pointLight)
 // 添加一个立方体观察效果
@@ -28,6 +26,11 @@ cube.position.set(5, 0, 5)
 cube.castShadow = true
 cube.receiveShadow = true
 scene.add(cube)
+
+// 创建点光源增强效果
+spotLight.target = plane
+new THREE.CameraHelper( spotLight.shadow.camera )
+scene.add(spotLight)
 
 camera.lookAt(new THREE.Vector3(0, 0, 0))
 
