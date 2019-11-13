@@ -1,6 +1,11 @@
 import * as THREE from 'three'
+window.THREE = THREE
 import {setupControl} from './control'
-import {ambientLight, spotLight, pointLight, directionalLight, hemisphereLight} from './lights'
+import {ambientLight, spotLight, pointLight, directionalLight, hemisphereLight, areaLight} from './lights'
+import 'three/examples/js/lights/RectAreaLightUniformsLib'
+
+console.log(a)
+
 const scene = new THREE.Scene()
 const camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000)
 camera.position.set(30, 30, 30)
@@ -27,7 +32,7 @@ scene.add(hemisphereLight)
 
 scene.add(pointLight)
 // 添加一个立方体观察效果
-const cube = new THREE.Mesh(new THREE.BoxGeometry(5, 5, 5), new THREE.MeshLambertMaterial({color: 'blue'}))
+const cube = new THREE.Mesh(new THREE.BoxGeometry(5, 5, 5), new THREE.MeshPhysicalMaterial({color: 'blue'}))
 cube.position.set(5, 0, 5)
 cube.castShadow = true
 cube.receiveShadow = true
@@ -38,6 +43,10 @@ scene.add(cube)
 scene.add(spotLight)
 
 scene.add(directionalLight)
+
+scene.add(areaLight)
+RectAreaLightUniformsLib.init()
+// scene.add(RectAreaLightUniformsLib)
 spotLight.target = plane
 const cameraHelper = new THREE.CameraHelper( directionalLight.shadow.camera )
 // scene.add(cameraHelper)

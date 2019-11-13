@@ -24,4 +24,7 @@ directionalLight.castShadow = true
 export const hemisphereLight = new THREE.HemisphereLight(0xcccccc, 0x0000ff, 1)
 hemisphereLight.position.set(0, 50, 0)
 
+export const areaLight = new THREE.RectAreaLight(0xffffff, 1, 10, 10)
+areaLight.position.set(5, 5, 0)
+areaLight.lookAt(0, 0, 0)
 
