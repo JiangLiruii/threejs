@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import {setupControl} from './control'
-import {ambientLight, spotLight, pointLight} from './lights'
+import {ambientLight, spotLight, pointLight, directionalLight, hemisphereLight} from './lights'
 const scene = new THREE.Scene()
 const camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000)
 camera.position.set(30, 30, 50)
@@ -18,6 +18,8 @@ scene.add(plane)
 // 创建ambient光源
 scene.add(ambientLight)
 
+scene.add(hemisphereLight)
+
 
 scene.add(pointLight)
 // 添加一个立方体观察效果
@@ -28,10 +30,13 @@ cube.receiveShadow = true
 scene.add(cube)
 
 // 创建点光源增强效果
-spotLight.target = plane
-new THREE.CameraHelper( spotLight.shadow.camera )
+
 scene.add(spotLight)
 
+scene.add(directionalLight)
+spotLight.target = plane
+const cameraHelper = new THREE.CameraHelper( directionalLight.shadow.camera )
+scene.add(cameraHelper)
 camera.lookAt(new THREE.Vector3(0, 0, 0))
 
 const renderer = new THREE.WebGLRenderer()
@@ -39,13 +44,15 @@ renderer.setClearColor(new THREE.Color('grey'))
 renderer.setSize(window.innerWidth, window.innerHeight)
 document.getElementById('webgl-output').appendChild(renderer.domElement)
 renderer.shadowMap.enabled = true
-
+// 创建更加柔和的阴影
+// renderer.shadowMap.type = THREE.PCFSoftShadowMap
 const render = function() {
   renderer.render(scene, camera)
   requestAnimationFrame(render)
 }
+
 render()
 
 // 设置dat.gui
-setupControl(ambientLight, spotLight, pointLight, cube)
+setupControl(ambientLight, spotLight, pointLight, directionalLight, hemisphereLight, cube)
 

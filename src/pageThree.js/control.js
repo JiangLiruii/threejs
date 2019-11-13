@@ -1,14 +1,21 @@
 import dat from 'dat.gui'
 import * as THREE from 'three'
-export const setupControl = (ambientLight, spotLight, pointLight, cube) => {
+export const setupControl = (ambientLight, spotLight, pointLight, directionalLight, hemisphereLight, cube) => {
   const gui = new dat.GUI()
+  ambientLight.visible = false
+  spotLight.visible = false
+  pointLight.visible = false
+  directionalLight.visible = false
+  hemisphereLight.visible = false
   const controller = new function() {
     this.intensity = ambientLight.intensity,
     this.distance = spotLight.distance
     this.ambientColor = ambientLight.color.getStyle(),
-    this.disableSpotLight = false
-    this.disableAmbientLight = false
-    this.disablePointLight = false
+    this.enableSpotLight = false
+    this.enableAmbientLight = false
+    this.enablePointLight = false
+    this.enableDirectionalLight = false
+    this.enableHemisephereLight = false
     this.x = cube.position.x
     this.y = cube.position.y
     this.z = cube.position.z
@@ -29,14 +36,20 @@ export const setupControl = (ambientLight, spotLight, pointLight, cube) => {
     ambientLight.color = new THREE.Color(controller.ambientColor)
   })
   const chooseOneLight = gui.addFolder('chooseLight')
-  chooseOneLight.add(controller, 'disableSpotLight').onChange((e) => {
-    spotLight.visible = !e
+  chooseOneLight.add(controller, 'enableSpotLight').onChange((e) => {
+    spotLight.visible = e
   })
-  chooseOneLight.add(controller, 'disableAmbientLight').onChange((e) => {
-    ambientLight.visible = !e
+  chooseOneLight.add(controller, 'enableAmbientLight').onChange((e) => {
+    ambientLight.visible = e
   })
-  chooseOneLight.add(controller, 'disablePointLight').onChange((e) => {
-    pointLight.visible = !e
+  chooseOneLight.add(controller, 'enablePointLight').onChange((e) => {
+    pointLight.visible = e
+  })
+  chooseOneLight.add(controller, 'enableDirectionalLight').onChange((e) => {
+    directionalLight.visible = e
+  })
+  chooseOneLight.add(controller, 'enableHemisephereLight').onChange((e) => {
+    enableHemisephereLight.visible = e
   })
   const guiCube = gui.addFolder('Cube Position')
   guiCube.add(controller, 'x', -10, 10, 1).onChange((e) => {
