@@ -3,9 +3,13 @@ import {setupControl} from './control'
 import {ambientLight, spotLight, pointLight, directionalLight, hemisphereLight} from './lights'
 const scene = new THREE.Scene()
 const camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000)
-camera.position.set(30, 30, 50)
-const planeGeometry = new THREE.PlaneGeometry(30, 30)
-const planeMaterial = new THREE.MeshPhongMaterial({color: 'grey'})
+camera.position.set(30, 30, 30)
+const planeGeometry = new THREE.PlaneGeometry(100, 100)
+const grassTexture = new THREE.TextureLoader().load(require('../assets/textures/ground/grasslight-big.jpg'))
+grassTexture.wrapS = THREE.RepeatWrapping
+grassTexture.wrapT = THREE.RepeatWrapping
+grassTexture.repeat.set(2, 2)
+const planeMaterial = new THREE.MeshLambertMaterial({map: grassTexture})
 const plane = new THREE.Mesh(planeGeometry, planeMaterial)
 plane.receiveShadow = true
 plane.rotation.x = -0.5 * Math.PI
@@ -23,7 +27,7 @@ scene.add(hemisphereLight)
 
 scene.add(pointLight)
 // 添加一个立方体观察效果
-const cube = new THREE.Mesh(new THREE.BoxGeometry(5, 5, 5), new THREE.MeshPhongMaterial({color: 'blue'}))
+const cube = new THREE.Mesh(new THREE.BoxGeometry(5, 5, 5), new THREE.MeshLambertMaterial({color: 'blue'}))
 cube.position.set(5, 0, 5)
 cube.castShadow = true
 cube.receiveShadow = true
@@ -36,7 +40,7 @@ scene.add(spotLight)
 scene.add(directionalLight)
 spotLight.target = plane
 const cameraHelper = new THREE.CameraHelper( directionalLight.shadow.camera )
-scene.add(cameraHelper)
+// scene.add(cameraHelper)
 camera.lookAt(new THREE.Vector3(0, 0, 0))
 
 const renderer = new THREE.WebGLRenderer()

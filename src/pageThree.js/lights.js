@@ -13,15 +13,15 @@ pointLight.position.add(position)
 
 export const directionalLight = new THREE.DirectionalLight(color, 2)
 directionalLight.position.add(position)
-directionalLight.shadowCameraNear = 1
-directionalLight.shadowCameraFar = 40
-directionalLight.shadowCameraBottom = -10
-directionalLight.shadowCameraLeft = -10
-directionalLight.shadowCameraRight = 10
-directionalLight.shadowCameraTop = 10
+directionalLight.shadow.camera.near = 1
+directionalLight.shadow.camera.far = 40
+directionalLight.shadow.camera.bottom = -10
+directionalLight.shadow.camera.left = -10
+directionalLight.shadow.camera.right = 10
+directionalLight.shadow.camera.top = 10
 directionalLight.castShadow = true
 
-export const hemisphereLight = new THREE.HemisphereLight(0x0000ff, 0x00ff00, 0.6)
-hemisphereLight.position.set(0, 400, 0)
+export const hemisphereLight = new THREE.HemisphereLight(0xcccccc, 0x0000ff, 1)
+hemisphereLight.position.set(0, 50, 0)
 
 

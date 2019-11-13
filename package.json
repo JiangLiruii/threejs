@@ -13,8 +13,10 @@
   "license": "ISC",
   "dependencies": {
     "dat.gui": "^0.7.6",
+    "file-loader": "^4.2.0",
     "rimraf": "^3.0.0",
-    "three": "^0.109.0"
+    "three": "^0.109.0",
+    "url-loader": "^2.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",

@@ -15,7 +15,7 @@ export const setupControl = (ambientLight, spotLight, pointLight, directionalLig
     this.enableAmbientLight = false
     this.enablePointLight = false
     this.enableDirectionalLight = false
-    this.enableHemisephereLight = false
+    this.enableHemisphereLight = false
     this.x = cube.position.x
     this.y = cube.position.y
     this.z = cube.position.z
@@ -25,6 +25,7 @@ export const setupControl = (ambientLight, spotLight, pointLight, directionalLig
     ambientLight.intensity = controller.intensity
     spotLight.intensity = controller.intensity
     pointLight.intensity = controller.intensity
+    hemisphereLight.intensity = controller.intensity
   })
   guiAmbientSettings.add(controller, 'distance', 0, 300, 1).onChange(() => {
     ambientLight.distance = controller.distance
@@ -48,8 +49,8 @@ export const setupControl = (ambientLight, spotLight, pointLight, directionalLig
   chooseOneLight.add(controller, 'enableDirectionalLight').onChange((e) => {
     directionalLight.visible = e
   })
-  chooseOneLight.add(controller, 'enableHemisephereLight').onChange((e) => {
-    enableHemisephereLight.visible = e
+  chooseOneLight.add(controller, 'enableHemisphereLight').onChange((e) => {
+    hemisphereLight.visible = e
   })
   const guiCube = gui.addFolder('Cube Position')
   guiCube.add(controller, 'x', -10, 10, 1).onChange((e) => {
