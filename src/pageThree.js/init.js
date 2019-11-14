@@ -2,7 +2,9 @@ import * as THREE from 'three'
 window.THREE = THREE
 import {setupControl} from './control'
 import {ambientLight, spotLight, pointLight, directionalLight, hemisphereLight, areaLight} from './lights'
-import 'three/examples/js/lights/RectAreaLightUniformsLib'
+// import 'three/examples/js/lights/RectAreaLightUniformsLib'
+
+import {lensFlare} from './lightLen'
 
 const scene = new THREE.Scene()
 const camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000)
@@ -12,7 +14,7 @@ const grassTexture = new THREE.TextureLoader().load(require('../assets/textures/
 grassTexture.wrapS = THREE.RepeatWrapping
 grassTexture.wrapT = THREE.RepeatWrapping
 grassTexture.repeat.set(2, 2)
-const planeMaterial = new THREE.MeshPhysicalMaterial({map: grassTexture})
+const planeMaterial = new THREE.MeshPhongMaterial({map: grassTexture})
 const plane = new THREE.Mesh(planeGeometry, planeMaterial)
 plane.receiveShadow = true
 plane.rotation.x = -0.5 * Math.PI
@@ -30,7 +32,7 @@ scene.add(hemisphereLight)
 
 scene.add(pointLight)
 // 添加一个立方体观察效果
-const cube = new THREE.Mesh(new THREE.BoxGeometry(5, 5, 5), new THREE.MeshPhysicalMaterial({color: 'blue'}))
+const cube = new THREE.Mesh(new THREE.BoxGeometry(5, 5, 5), new THREE.MeshLambertMaterial({color: 'blue'}))
 cube.position.set(5, 0, 5)
 cube.castShadow = true
 cube.receiveShadow = true
@@ -42,10 +44,13 @@ scene.add(spotLight)
 
 scene.add(directionalLight)
 
-THREE.RectAreaLightUniformsLib.init()
+// THREE.RectAreaLightUniformsLib.init()
 scene.add(areaLight)
 // scene.add(RectAreaLightUniformsLib)
 spotLight.target = plane
+lensFlare.position.copy(pointLight.position)
+scene.add(lensFlare)
+window.l = lensFlare
 // const cameraHelper = new THREE.CameraHelper( areaLight. )
 // scene.add(cameraHelper)
 camera.lookAt(new THREE.Vector3(0, 0, 0))

@@ -1,0 +1,10 @@
+import 'three/examples/js/objects/Lensflare'
+const textureLoader = new THREE.TextureLoader()
+const textureFlare0 = textureLoader.load(require('../assets/textures/flares/lensflare0.png'))
+const textureFlare1 = textureLoader.load(require('../assets/textures/flares/lensflare1.png'))
+const textureFlare2 = textureLoader.load(require('../assets/textures/flares/lensflare2.png'))
+const color = new THREE.Color(0xffaacc)
+export const lensFlare = new THREE.Lensflare()
+lensFlare.addElement(new THREE.LensflareElement(textureFlare0, 512, 0, color))
+lensFlare.addElement(new THREE.LensflareElement(textureFlare1, 512, 0, color))
+lensFlare.addElement(new THREE.LensflareElement(textureFlare2, 60, 0.6, color))
