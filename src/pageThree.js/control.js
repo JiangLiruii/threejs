@@ -1,12 +1,13 @@
 import dat from 'dat.gui'
 import * as THREE from 'three'
-export const setupControl = (ambientLight, spotLight, pointLight, directionalLight, hemisphereLight, cube) => {
+export const setupControl = (ambientLight, spotLight, pointLight, directionalLight, hemisphereLight, areaLight, cube) => {
   const gui = new dat.GUI()
   ambientLight.visible = false
   spotLight.visible = false
   pointLight.visible = false
   directionalLight.visible = false
   hemisphereLight.visible = false
+  areaLight.visible = false
   const controller = new function() {
     this.intensity = ambientLight.intensity,
     this.distance = spotLight.distance
@@ -16,6 +17,7 @@ export const setupControl = (ambientLight, spotLight, pointLight, directionalLig
     this.enablePointLight = false
     this.enableDirectionalLight = false
     this.enableHemisphereLight = false
+    this.enableAreaLight = false
     this.x = cube.position.x
     this.y = cube.position.y
     this.z = cube.position.z
@@ -51,6 +53,9 @@ export const setupControl = (ambientLight, spotLight, pointLight, directionalLig
   })
   chooseOneLight.add(controller, 'enableHemisphereLight').onChange((e) => {
     hemisphereLight.visible = e
+  })
+  chooseOneLight.add(controller, 'enableAreaLight').onChange((e) => {
+    areaLight.visible = e
   })
   const guiCube = gui.addFolder('Cube Position')
   guiCube.add(controller, 'x', -10, 10, 1).onChange((e) => {

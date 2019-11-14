@@ -40,6 +40,9 @@ module.exports = {
   },
 
   plugins: [new webpack.ProgressPlugin(),
+    new webpack.ProvidePlugin({
+      THREE: 'three',
+    }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
       chunks: ['pageOne'],

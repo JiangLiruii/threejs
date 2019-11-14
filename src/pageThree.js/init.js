@@ -4,8 +4,6 @@ import {setupControl} from './control'
 import {ambientLight, spotLight, pointLight, directionalLight, hemisphereLight, areaLight} from './lights'
 import 'three/examples/js/lights/RectAreaLightUniformsLib'
 
-console.log(a)
-
 const scene = new THREE.Scene()
 const camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000)
 camera.position.set(30, 30, 30)
@@ -14,7 +12,7 @@ const grassTexture = new THREE.TextureLoader().load(require('../assets/textures/
 grassTexture.wrapS = THREE.RepeatWrapping
 grassTexture.wrapT = THREE.RepeatWrapping
 grassTexture.repeat.set(2, 2)
-const planeMaterial = new THREE.MeshLambertMaterial({map: grassTexture})
+const planeMaterial = new THREE.MeshPhysicalMaterial({map: grassTexture})
 const plane = new THREE.Mesh(planeGeometry, planeMaterial)
 plane.receiveShadow = true
 plane.rotation.x = -0.5 * Math.PI
@@ -44,11 +42,11 @@ scene.add(spotLight)
 
 scene.add(directionalLight)
 
+THREE.RectAreaLightUniformsLib.init()
 scene.add(areaLight)
-RectAreaLightUniformsLib.init()
 // scene.add(RectAreaLightUniformsLib)
 spotLight.target = plane
-const cameraHelper = new THREE.CameraHelper( directionalLight.shadow.camera )
+// const cameraHelper = new THREE.CameraHelper( areaLight. )
 // scene.add(cameraHelper)
 camera.lookAt(new THREE.Vector3(0, 0, 0))
 
@@ -67,5 +65,5 @@ const render = function() {
 render()
 
 // 设置dat.gui
-setupControl(ambientLight, spotLight, pointLight, directionalLight, hemisphereLight, cube)
+setupControl(ambientLight, spotLight, pointLight, directionalLight, hemisphereLight, areaLight, cube)
 
