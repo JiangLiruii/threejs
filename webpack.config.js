@@ -13,6 +13,7 @@ module.exports = {
     pageOne: './src/pageOne.js',
     pageTwo: './src/pageTwo.js',
     pageThree: './src/pageThree.js',
+    pageFour: './src/pageFour',
   },
 
   output: {
@@ -45,6 +46,11 @@ module.exports = {
       template: './public/index.html',
       chunks: ['pageThree'],
       filename: 'pageThree.html',
+    }),
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+      chunks: ['pageFour'],
+      filename: 'pageFour.html',
     }),
     new HappyPack({
       // 这个HappyPack的“名字”就叫做happyBabel，和楼上的查询参数遥相呼应
