@@ -1,13 +1,13 @@
 import dat from 'dat.gui'
 import * as THREE from 'three'
-export const setupControl = (ambientLight, spotLight, pointLight, directionalLight, hemisphereLight, areaLight, cube) => {
+export const setupControl = ({ambientLight, spotLight, pointLight, directionalLight, hemisphereLight, areaLight, cube}) => {
   const gui = new dat.GUI()
-  ambientLight.visible = false
-  spotLight.visible = false
-  pointLight.visible = false
-  directionalLight.visible = false
-  hemisphereLight.visible = false
-  areaLight.visible = false
+  if (ambientLight) ambientLight.visible = false
+  if (spotLight) spotLight.visible = false
+  if (pointLight) pointLight.visible = false
+  if (directionalLight) directionalLight.visible = false
+  if (hemisphereLight) hemisphereLight.visible = false
+  if (areaLight)areaLight.visible = false
   const controller = new function() {
     this.intensity = ambientLight.intensity,
     this.distance = spotLight.distance

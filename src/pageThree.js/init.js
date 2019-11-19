@@ -1,7 +1,6 @@
 import * as THREE from 'three'
-window.THREE = THREE
-import {setupControl} from './control'
-import {ambientLight, spotLight, pointLight, directionalLight, hemisphereLight, areaLight} from './lights'
+import {setupControl} from '../utils/control'
+import {ambientLight, spotLight, pointLight, directionalLight, hemisphereLight, areaLight} from '../utils/lights'
 // import 'three/examples/js/lights/RectAreaLightUniformsLib'
 
 import {lensFlare} from './lightLen'
@@ -70,5 +69,5 @@ const render = function() {
 render()
 
 // 设置dat.gui
-setupControl(ambientLight, spotLight, pointLight, directionalLight, hemisphereLight, areaLight, cube)
+setupControl({ambientLight, spotLight, pointLight, directionalLight, hemisphereLight, areaLight, cube})
 

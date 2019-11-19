@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-const position = new THREE.Vector3(-30, 10, -10)
+const position = new THREE.Vector3(30, 20, -10)
 const color = 0xfffffff
 export const ambientLight = new THREE.AmbientLight('#606008', 1)
 export const spotLight = new THREE.SpotLight(color, 1, 180, Math.PI / 4)
