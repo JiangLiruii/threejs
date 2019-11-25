@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 export const initRender = (additionalProps={}) => {
   const renderer = new THREE.WebGLRenderer()
-  renderer.setClearColor(new THREE.Color(0xffffff))
+  renderer.setClearColor(new THREE.Color(0x000000))
   renderer.setSize(window.innerWidth, window.innerHeight)
   document.getElementById('webgl-output').appendChild(renderer.domElement)
   renderer.shadowMap.enabled = true
