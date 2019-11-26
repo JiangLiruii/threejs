@@ -1,12 +1,22 @@
 import dat from 'dat.gui'
 import {initRender} from '../utils/init'
 
+const createMultiMaterialObject= function( geometry, materials ) {
+  const group = new THREE.Group()
+
+  for ( let i = 0, l = materials.length; i < l; i ++ ) {
+    group.add( new THREE.Mesh( geometry, materials[i] ) )
+  }
+
+  return group
+}
+
 
 export const makeDepthMaterial = function() {
   const renderer = initRender()
 
   const scene = new THREE.Scene()
-  scene.overrideMaterial = new THREE.MeshDepthMaterial()
+  // scene.overrideMaterial = new THREE.MeshDepthMaterial()
 
   const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 50, 100)
   camera.position.set(-50, 40, 50)
@@ -29,12 +39,13 @@ export const makeDepthMaterial = function() {
     this.addCube = function() {
       const cubeSize = Math.ceil(3 + (Math.random() * 3))
       const cubeGeometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize)
-      const cubeMaterial = new THREE.MeshBasicMaterial({
-        color: 0x7777ff,
-        name: 'Basic Material',
-        flatShading: true,
+      const cubeMaterial = new THREE.MeshDepthMaterial()
+      const colorMaterial = new THREE.MeshBasicMaterial({
+        color: 0x00ff00,
+        transparent: true,
+        blending: THREE.MultiplyBlending,
       })
-      const cube = new THREE.Mesh(cubeGeometry, cubeMaterial)
+      const cube = createMultiMaterialObject(cubeGeometry, [colorMaterial, cubeMaterial])
       cube.castShadow = true
 
       // position the cube randomly in the scene
@@ -53,9 +64,6 @@ export const makeDepthMaterial = function() {
   }
 
   const gui = new dat.GUI()
-  const spGui = gui.addFolder('THREE.MeshDepthMaterial')
-  spGui.add(scene.overrideMaterial, 'wireframe')
-  spGui.add(scene.overrideMaterial, 'wireframeLinewidth', 0, 20)
 
   gui.add(controls, 'rotationSpeed', 0, 0.5)
   gui.add(controls, 'addCube')
