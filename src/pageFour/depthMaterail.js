@@ -12,13 +12,13 @@ const createMultiMaterialObject= function( geometry, materials ) {
 }
 
 
-export const makeDepthMaterial = function() {
+export const makeScene = function() {
   const renderer = initRender()
 
   const scene = new THREE.Scene()
   // scene.overrideMaterial = new THREE.MeshDepthMaterial()
 
-  const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 50, 100)
+  const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 50, 200)
   camera.position.set(-50, 40, 50)
   camera.lookAt(new THREE.Vector3(0, 0, 0))
   const controls = new function() {
@@ -39,13 +39,13 @@ export const makeDepthMaterial = function() {
     this.addCube = function() {
       const cubeSize = Math.ceil(3 + (Math.random() * 3))
       const cubeGeometry = new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize)
-      const cubeMaterial = new THREE.MeshDepthMaterial()
+      const cubeMaterial = new THREE.MeshNormalMaterial()
       const colorMaterial = new THREE.MeshBasicMaterial({
         color: 0x00ff00,
         transparent: true,
         blending: THREE.MultiplyBlending,
       })
-      const cube = createMultiMaterialObject(cubeGeometry, [colorMaterial, cubeMaterial])
+      const cube = createMultiMaterialObject(cubeGeometry, [cubeMaterial, colorMaterial])
       cube.castShadow = true
 
       // position the cube randomly in the scene

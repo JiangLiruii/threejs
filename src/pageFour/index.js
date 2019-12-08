@@ -1,3 +1,3 @@
-import {makeDepthMaterial} from './depthMaterail'
+import {makeScene} from './depthMaterail'
 
-makeDepthMaterial()
+makeScene()
