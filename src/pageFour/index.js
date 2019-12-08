@@ -1,3 +1,3 @@
 import {makeScene} from './depthMaterail'
-
-makeScene()
+import './lineMaterials'
+// makeScene()
