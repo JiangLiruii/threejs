@@ -7537,10 +7537,10 @@ textextensions@^2.4.0:
   resolved "https://registry.npm.taobao.org/textextensions/download/textextensions-2.5.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Ftextextensions%2Fdownload%2Ftextextensions-2.5.0.tgz#e21d3831dafa37513dd80666dff541414e314293"
   integrity sha1-4h04Mdr6N1E92AZm3/VBQU4xQpM=
 
-three@^0.109.0:
-  version "0.109.0"
-  resolved "https://registry.npm.taobao.org/three/download/three-0.109.0.tgz#611c9ef860d10bd107695cead6c6abcd2422e5fd"
-  integrity sha1-YRye+GDRC9EHaVzq1sarzSQi5f0=
+three@^0.125.0:
+  version "0.125.0"
+  resolved "https://registry.yarnpkg.com/three/-/three-0.125.0.tgz#19e922b9dc51ad0b706893aeee888de68e99850a"
+  integrity sha512-qL36qUGsPQ/Ofo/RZdXwHwM7A8wzUSAIyawtjIebJSPvounUQeneSqxI0aBY2iwKpseGy+RUtj3C5f/z4poyXw==
 
 throat@^4.0.0:
   version "4.1.0"
